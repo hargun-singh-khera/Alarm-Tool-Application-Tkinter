@@ -33,7 +33,7 @@ class AlarmTool():
 
         # Initializing root object
         self.root = root
-        # Used to set system hour
+        # Used to set 12-hour format same as system
         self.system_hour = time.strftime("%I")
         # Used to set system min
         self.system_min = time.strftime("%M")
