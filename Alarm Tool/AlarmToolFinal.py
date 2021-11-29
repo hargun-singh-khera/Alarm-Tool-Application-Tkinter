@@ -1,4 +1,4 @@
-# Import Required Library
+# Import Required
 from tkinter import *
 from threading import *
 from tkinter import messagebox
