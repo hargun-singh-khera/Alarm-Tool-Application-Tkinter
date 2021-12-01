@@ -135,7 +135,11 @@ class AlarmTool():
         else:
             # If minute value has only one digit like 0 to 9 then concatenate string 0 before with these numbers
             if self.hour.get() < 10 and self.minute.get() < 10:  
-                set_alarm_time = f"{str(0)+str(self.hour.get())}:{str(0)+str(self.minute.get())}:00"
+                set_alarm_time = f"{str(0)+str(self.hour.get())}:{(str(0)+str(self.minute.get()))}:00"
+            elif self.hour.get() < 10:
+                set_alarm_time = f"{str(0)+str(self.hour.get())}:{self.minute.get()}:00"
+            elif self.minute.get() < 10:
+                set_alarm_time = f"{self.hour.get()}:{str(0)+str(self.minute.get())}:00"
             else:      
                 set_alarm_time = f"{self.hour.get()}:{self.minute.get()}:00"
 
