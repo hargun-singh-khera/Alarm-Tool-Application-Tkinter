@@ -123,26 +123,22 @@ class AlarmTool():
         self.countAlarm = Label(root, text="", font="Helevetica 13 bold",fg="white",bg="#FF0000")
         self.countAlarm.place(x=10,y=325)
 
-        # Check if the time given by user is in PM
-        if self.ampmuser.get() == 'PM' and self.hour.get() > 12:
+        # Check if the time given by user is in PM and is it is less than 12
+        if self.ampmuser.get() == 'PM' and self.hour.get() < 12:
             # Increment hour time set by user by 12
             # If minute value has only one digit like 0 to 9 then concatenate string 0 before with these numbers
             if self.minute.get() < 10:  
-                set_alarm_time = f"{self.hour.get()+12}:{str(0)+str(self.minute.get())}:00"
+                set_alarm_time = f"{self.hour.get()+12}:{str(0)+str(self.minute.get())}:00"    
             else:      
                 set_alarm_time = f"{self.hour.get()+12}:{self.minute.get()}:00"
 
         else:
             # If minute value has only one digit like 0 to 9 then concatenate string 0 before with these numbers
-            if self.minute.get() < 10:  
-                set_alarm_time = f"{self.hour.get()}:{str(0)+str(self.minute.get())}:00"
+            if self.hour.get() < 10 and self.minute.get() < 10:  
+                set_alarm_time = f"{str(0)+str(self.hour.get())}:{str(0)+str(self.minute.get())}:00"
             else:      
                 set_alarm_time = f"{self.hour.get()}:{self.minute.get()}:00"
 
-        if self.hour.get() < 10: 
-            set_alarm_time = f"{str(0)+str(self.hour.get())}:{str(0)+str(self.minute.get())}:00"
-        
-            
 
         # Calling the message function to display pop up message to the user
         self.message()
