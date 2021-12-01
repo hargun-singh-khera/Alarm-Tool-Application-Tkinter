@@ -140,7 +140,8 @@ class AlarmTool():
                 set_alarm_time = f"{self.hour.get()}:{self.minute.get()}:00"
 
         if self.hour.get() < 10: 
-            set_alarm_time = f"{str(0)+str(self.hour.get())}:{str(self.minute.get())}:00"
+            set_alarm_time = f"{str(0)+str(self.hour.get())}:{str(0)+str(self.minute.get())}:00"
+        
             
 
         # Calling the message function to display pop up message to the user
