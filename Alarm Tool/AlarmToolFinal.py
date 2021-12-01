@@ -101,7 +101,7 @@ class AlarmTool():
     # Displaying pop up messgae to the user that the time for alarm is set : {time_given_by_user}
     def message(self):
         # Used for modifying the text with text in Label countAlarm
-        self.countAlarm.config(text=" The alarm is counting . . .")
+        self.countAlarm.config(text=" The alarm is counting . . . ")
 
         # If minute value has only one digit like 0 to 9 then concatenate string 0 before with these numbers
         if self.minute.get() < 10:
