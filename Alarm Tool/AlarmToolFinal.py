@@ -124,7 +124,7 @@ class AlarmTool():
         self.countAlarm.place(x=10,y=325)
 
         # Check if the time given by user is in PM
-        if self.ampmuser.get() == 'PM' and self.hour.get() > 12:
+        if self.ampmuser.get() == 'PM' and self.hour.get() >= 1:
             # Increment hour time set by user by 12
             # If minute value has only one digit like 0 to 9 then concatenate string 0 before with these numbers
             if self.minute.get() < 10:  
