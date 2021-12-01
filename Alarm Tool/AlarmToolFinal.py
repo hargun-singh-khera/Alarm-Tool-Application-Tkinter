@@ -47,7 +47,7 @@ class AlarmTool():
         self.time_zone = time.strftime("%Z") 
         
         # Clock_label used to display time in application
-        self.clock_label = Label(root, text=self.system_hour + ":" + self.system_min + ":" + self.system_sec + " " + self.am_pm, font="Helvetica 48",fg="red",bg="black")
+        self.clock_label = Label(root, text=self.system_hour + ":" + self.system_min + ":" + self.system_sec + " " + self.am_pm, font="Helvetica 48",fg="green",bg="black")
         self.clock_label.place(x=14,y=10)
 
         # Used to update the clock after every 1000 milliseconds
@@ -139,6 +139,10 @@ class AlarmTool():
             else:      
                 set_alarm_time = f"{self.hour.get()}:{self.minute.get()}:00"
 
+        if self.hour.get() < 10: 
+            set_alarm_time = f"{str(0)+str(self.hour.get())}:{str(self.minute.get())}:00"
+            
+
         # Calling the message function to display pop up message to the user
         self.message()
 
@@ -151,7 +155,7 @@ class AlarmTool():
         while True:
             # Get current time
             current_time = time.strftime("%H:%M:%S")
-    
+            print(current_time,set_alarm_time)
             # Wait for one seconds
             time.sleep(1)
             
