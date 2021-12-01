@@ -71,8 +71,8 @@ class AlarmTool():
         self.messageforAlarm = Label(root, text="What is this Alarm for?",fg="white",bg="#FF8C00",relief="solid", font="Helevetica 15 bold").place(x=10,y=230)
 
         # Declaration of Tkinter variables
-        self.hour = IntVar()
-        self.minute = IntVar()
+        self.hour = StringVar()
+        self.minute = StringVar()
         self.ampmuser = StringVar()
         self.messageforAlarmvalue = StringVar()
     
@@ -103,18 +103,15 @@ class AlarmTool():
         # Used for modifying the text with text in Label countAlarm
         self.countAlarm.config(text=" The alarm is counting . . . ")
 
-        # If minute value has only one digit like 0 to 9 then concatenate string 0 before with these numbers
-        if self.minute.get() < 10:
-            messagebox.showinfo("Alarm Tool",f"The alarm is set to: {self.hour.get()}:{str(0)+str(self.minute.get())} {self.ampmuser.get()}")
-
-        else:      
-            messagebox.showinfo("Alarm Tool",f"The alarm is set to: {self.hour.get()}:{self.minute.get()} {self.ampmuser.get()}")   
+        #Displaying the pop message that the time of alarm is set to time given by the user
+        messagebox.showinfo("Alarm Tool",f"The alarm is set to: {self.hour.get()}:{self.minute.get()} {self.ampmuser.get()}")   
 
 
     # Use Threading
     def Threading(self):
         t1 = Thread(target=self.submit)
         t1.start()    
+
 
     # Submit function called when pressed Set Alarm button
     def submit(self):
@@ -124,31 +121,23 @@ class AlarmTool():
         self.countAlarm.place(x=10,y=325)
 
         # Check if the time given by user is in PM and is it is less than 12
-        if self.ampmuser.get() == 'PM' and self.hour.get() < 12:
+        if self.ampmuser.get() == 'PM' and int(self.hour.get()) < 12:
             # Increment hour time set by user by 12
-            # If minute value has only one digit like 0 to 9 then concatenate string 0 before with these numbers
-            if self.minute.get() < 10:  
-                set_alarm_time = f"{self.hour.get()+12}:{str(0)+str(self.minute.get())}:00"    
-            else:      
-                set_alarm_time = f"{self.hour.get()+12}:{self.minute.get()}:00"
+            set_alarm_time = f"{int(self.hour.get())+12}:{self.minute.get()}:00"
 
         else:
             # If minute value has only one digit like 0 to 9 then concatenate string 0 before with these numbers
-            if self.hour.get() < 10 and self.minute.get() < 10:  
-                set_alarm_time = f"{str(0)+str(self.hour.get())}:{(str(0)+str(self.minute.get()))}:00"
-            elif self.hour.get() < 10:
-                set_alarm_time = f"{str(0)+str(self.hour.get())}:{self.minute.get()}:00"
-            elif self.minute.get() < 10:
-                set_alarm_time = f"{self.hour.get()}:{str(0)+str(self.minute.get())}:00"
+            if int(self.hour.get()) < 10:
+                set_alarm_time = f"{str(0) + self.hour.get()}:{self.minute.get()}:00"
             else:      
                 set_alarm_time = f"{self.hour.get()}:{self.minute.get()}:00"
-
 
         # Calling the message function to display pop up message to the user
         self.message()
 
         # Calling the alarm which checks whether the time set by user is equal to the current time        
         self.alarm(set_alarm_time)                  
+
 
     # Set Alarm function
     def alarm(self,set_alarm_time):
