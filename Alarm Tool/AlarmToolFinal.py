@@ -10,6 +10,8 @@ import os
 class AlarmTool():
     # The init method or constructor to initialize the GUI application with clock and widgets functions
     def __init__(self, root):
+        
+        # Initializing root object
         self.root = root
         # Set the title of the GUI Project
         self.root.title("Alarm Tool")
@@ -31,8 +33,6 @@ class AlarmTool():
     # Funciton to display system clock in the application
     def clock(self):
 
-        # Initializing root object
-        self.root = root
         # Used to set 12-hour format same as system
         self.system_hour = time.strftime("%I")
         # Used to set system min
@@ -125,8 +125,13 @@ class AlarmTool():
             # Increment hour time set by user by 12
             set_alarm_time = f"{int(self.hour.get())+12}:{self.minute.get()}:00"
 
+        # Check if the time given by user is in AM and is it is equal to 12
+        elif self.ampmuser.get() == 'AM' and int(self.hour.get()) == 12:
+            # Increment hour time set by user by 12
+            set_alarm_time = f"{int(self.hour.get())+12}:{self.minute.get()}:00"
+
         else:
-            # If minute value has only one digit like 0 to 9 then concatenate string 0 before with these numbers
+            # If hour value has only one digit like 0 to 9 then concatenate string 0 before with the number given
             if int(self.hour.get()) < 10:
                 set_alarm_time = f"{str(0) + self.hour.get()}:{self.minute.get()}:00"
             else:      
@@ -179,3 +184,4 @@ alrmt = AlarmTool(root)
 
 # Execute Tkinter
 root.mainloop()        
+
