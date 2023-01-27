@@ -169,7 +169,7 @@ class AlarmTool():
                     messagebox.showinfo("Alarm Tool(Message)", f"The message is: {alarmmessage}")
                 
                 # Playing sound
-                playsound('C:/Users/user/Desktop/Python GUI Project/MV27TES-alarm.mp3') 
+                playsound('MV27TES-alarm.mp3') 
                 break
         
         # Used for modifying the text with empty text in Label countAlarm after Alarm Sound Rung successfully
