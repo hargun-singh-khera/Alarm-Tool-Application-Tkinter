@@ -109,8 +109,11 @@ class AlarmTool():
 
     # Use Threading
     def Threading(self):
-        t1 = Thread(target=self.submit)
-        t1.start()    
+        try:
+            t1 = Thread(target=self.submit)
+            t1.start()
+        except: 
+            print('Something Went Wrong!')  
 
 
     # Submit function called when pressed Set Alarm button
@@ -169,7 +172,8 @@ class AlarmTool():
                     messagebox.showinfo("Alarm Tool(Message)", f"The message is: {alarmmessage}")
                 
                 # Playing sound
-                playsound('C:/Users/user/Desktop/Python GUI Project/MV27TES-alarm.mp3') 
+                # playsound('C:/Users/user/Desktop/Python GUI Project/MV27TES-alarm.mp3') 
+                playsound('Myalarm.mp3')
                 break
         
         # Used for modifying the text with empty text in Label countAlarm after Alarm Sound Rung successfully
